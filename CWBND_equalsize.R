@@ -225,9 +225,11 @@ design_CWBND<-function(H){
 (H<-CWBND_equalsize(k=4,i=2,D=1))
 (D<-design_CWBND(H))
 
+
 # example #2
 (H<-CWBND_equalsize(k=5,i=3,D=2))
 design_CWBND(H)
+
 
 
 # example #3
