@@ -1,10 +1,12 @@
 ##########################################################################################
 # CWBND_equalsize: Circular Weakly balance neighbour design for block of equal size(K)
+
 # Algorithm from paper:
+
 # Khadija Noreen, Muhammad Sajid, Mahmood Ul Hassan, Muhammad Rasheed and 
 # Rashid Ahmed (2021). Algorithms to obtain Minimal Circular Weakly Balanced 
 # Neighbor Designs. 
-# Code by Noreen et al., 01-03-2021 to 05-04-2021
+# Coded by Noreen et al., 01-03-2021 to 05-04-2021
 # Version 1.4.0  (2021-04-05)
 ##########################################################################################
 
