@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 ##########################################################################################
 # CWBND_equalsize: Circular Weakly balance neighbour design for block of equal size(K)
+=======
+#################################################################################
+# CWBND_equalsize: Circular Weakly balance neighbour design for block of equal 
+# size(K)
+>>>>>>> a0d7fc661c2781351f4478a4d21fcc24590579ed
 
 # Algorithm from paper:
 
@@ -8,7 +14,7 @@
 # Neighbor Designs. 
 # Coded by Noreen et al., 01-03-2021 to 05-04-2021
 # Version 1.4.0  (2021-04-05)
-##########################################################################################
+#################################################################################
 
 
 
