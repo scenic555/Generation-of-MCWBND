@@ -2,7 +2,7 @@
 # CWBND_2diffsize: Circular weakly balance neighbour design for block of two different
 # sizes (K1 and k2)
 # Algorithm from paper:
-# Khadija Noreen, Muhammad Sajid, Mahmood Ul Hassan, Muhammad Rasheed and 
+# Khadija Noreen, Muhammad Sajid Rashid, Mahmood Ul Hassan, Muhammad Rasheed and 
 # Rashid Ahmed (2021). Algorithms to obtain Minimal Circular Weakly Balanced 
 # Neighbor Designs. 
 # Code by Noreen et al., 01-03-2021 to 05-04-2021
