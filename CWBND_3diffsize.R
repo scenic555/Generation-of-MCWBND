@@ -142,6 +142,22 @@ grouping3<-function(A,k,v,i,sk2,sk3){
   list(B1=list(fs1,fs2,fs3),B4=list(gs1,gs2,gs3),B5=A3)
 }
 
+#######################################################################
+# Obtain set(s) of shifts by deleting smallest value of each group
+#######################################################################
+
+delmin<-function(z){
+  fs<-c()
+  n<-nrow(z)
+  c<-ncol(z)-1
+  for(i in 1:n){
+    z1<-z[i,]
+    z2<-z1[z1!=min(z1)]
+    fs<-rbind(fs,z2)
+  }
+  return(fs)
+}
+
 #################################################################################
 # Selection of adjusted A and the set(s) of shifts to obtain Circular Weakly 
 # balance neighbour design for three different block size.
