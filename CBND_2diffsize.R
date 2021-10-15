@@ -129,7 +129,7 @@ delmin<-function(z){
 CBND_2diffsize<-function(k,i,D=1,sk2=1){
   
   if(length(k)>2 | length(k)<2){stop("length(k)=2 ")}
-  if(any(k<=3)!=0) stop("k=Block size: Each block size must be greater than 3")
+  if(any(k<=2)!=0) stop("k=Block size: Each block size must be greater than 3")
   if(i<=0) stop("i= Must be a positive integer")
   if(k[1]<k[2]) stop("k1>K2")
   
