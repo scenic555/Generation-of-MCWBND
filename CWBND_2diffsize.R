@@ -6,7 +6,7 @@
 
 # Khadija Noreen, Muhammad Sajid Rashid, Mahmood Ul Hassan, 
 # Zahra Noreen and Rashid Ahmed (2021). Algorithms to Obtain Minimal Circular Weakly Balanced Neighbor Designs. 
-. 
+ 
 # Coded by Noreen et al., 01-08-2021 to 05-09-2021
 # Version 1.4.0  (2021-09-05)
 ################################################################################
@@ -125,7 +125,7 @@ delmin<-function(z){
 # Sk2: Number of sets of shifts for K2
 
 
-CBND_2diffsize<-function(k,i,D=1,sk2=1){
+CWBND_2diffsize<-function(k,i,D=1,sk2=1){
   
   if(length(k)>2 | length(k)<2){stop("length(k)=2 ")}
   if(any(k<=2)!=0) stop("k=Block size: Each block size must be greater than 2")
@@ -469,9 +469,9 @@ new("stat_test", x)
 ##################################################################
 # Generation of design using sets of cyclical shifts
 ###################################################################
-# H is an output object from CBND_2diffsize
-# The output is called using the design_CBND to generate design
-design_CBND<-function(H){
+# H is an output object from CWBND_2diffsize
+# The output is called using the design_CWBND to generate design
+design_CWBND<-function(H){
   
   setClass( "CWBND_design", representation("list"))
   setMethod("show", "CWBND_design", function(object) {
@@ -532,23 +532,23 @@ design_CBND<-function(H){
 
 
 # Example#1
-(H<-CBND_2diffsize(k=c(5,4),i=3,D=2,sk2=1))
-(design_CBND(H))
+(H<-CWBND_2diffsize(k=c(5,4),i=3,D=2,sk2=1))
+(design_CWBND(H))
 
 # Example#2
-(H<-CBND_2diffsize(k=c(5,4),i=3,D=2,sk2=2))
-(design_CBND(H))
+(H<-CWBND_2diffsize(k=c(5,4),i=3,D=2,sk2=2))
+(design_CWBND(H))
 
 # Example#3
-(H<-CBND_2diffsize(k=c(5,4),i=4,D=2,sk2=2))
-(design_CBND(H))
+(H<-CWBND_2diffsize(k=c(5,4),i=4,D=2,sk2=2))
+(design_CWBND(H))
 
 # Example#4
-(H<-CBND_2diffsize(k=c(5,4),i=2,D=2,sk2=1))
-(design_CBND(H))
+(H<-CWBND_2diffsize(k=c(5,4),i=2,D=2,sk2=1))
+(design_CWBND(H))
 
 # Example#5
-(H<-CBND_2diffsize(k=c(6,4),i=2,D=2,sk2=2))
+(H<-CWBND_2diffsize(k=c(6,4),i=2,D=2,sk2=2))
 (design_CBND(H))
 
 

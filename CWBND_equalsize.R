@@ -7,7 +7,7 @@
 
 # Khadija Noreen, Muhammad Sajid Rashid, Mahmood Ul Hassan, 
 # Zahra Noreen and Rashid Ahmed (2021). Algorithms to Obtain Minimal Circular Weakly Balanced Neighbor Designs. 
-. 
+ 
 # Coded by Noreen et al., 01-08-2021 to 05-09-2021
 # Version 1.4.0  (2021-09-05)
 ################################################################################
