@@ -1,8 +1,7 @@
 ################################################################################
-# CBND_equalsize: Circular balance neighbor design for block of equal size(K)
+# CWBND_equalsize: Circular Weakly balance neighbor design for block of equal size(K)
 ################################################################################
-# CBND_equalsize: Circular  balance neighbor design for block of equal 
-# size(K)
+# CBND_equalsize: Circular Weakly balance neighbor design for block of equal size(K)
 
 # Algorithm from paper:
 
