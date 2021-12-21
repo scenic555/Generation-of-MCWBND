@@ -1,14 +1,13 @@
 ################################################################################
-# CBND_2diffsize: Circular balance neighbor design for block of two different
+# CBND_2diffsize: Circular Weakly balance neighbor design for block of two different
 # sizes (K1 and k2)
 
 # Algorithm from paper:
 
-# Akbar Fardos, Khadija Noreen, Muhammad Sajid Rashid, Mahmood Ul Hassan, 
-# Zahra Noreen and Rashid Ahmed (2021). An Algorithm to Generate Minimal 
-# Circular Balanced and Strongly Balanced Neighbor Designs
- 
-# Coded by Fardos et al., 01-08-2021 to 05-09-2021
+# Khadija Noreen, Muhammad Sajid Rashid, Mahmood Ul Hassan, 
+# Zahra Noreen and Rashid Ahmed (2021). Algorithms to Obtain Minimal Circular Weakly Balanced Neighbor Designs. 
+. 
+# Coded by Noreen et al., 01-08-2021 to 05-09-2021
 # Version 1.4.0  (2021-09-05)
 ################################################################################
 
