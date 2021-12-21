@@ -1,5 +1,5 @@
 ################################################################################
-# CBND_3diffsize: Circular weakly balance neighbor design for block of three different 
+# CWBND_3diffsize: Circular weakly balance neighbor design for block of three different 
 # sizes (K1,k2 and k3)
 
 # Algorithm from paper:
