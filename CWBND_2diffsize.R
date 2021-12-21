@@ -1,5 +1,5 @@
 ################################################################################
-# CBND_2diffsize: Circular Weakly balance neighbor design for block of two different
+# CWBND_2diffsize: Circular Weakly balance neighbor design for block of two different
 # sizes (K1 and k2)
 
 # Algorithm from paper:
