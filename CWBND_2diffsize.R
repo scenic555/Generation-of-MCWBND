@@ -119,8 +119,8 @@ delmin<-function(z){
 # Weakly balance neighbor design for two different block size.
 ################################################################################
 
-# D=1: Circular Strongly Balanced Neighbor Designs
-# D=2: Circular Balanced Neighbor Designs
+# D=1: Circular Weakly Balanced Neighbor Designs in which v/2 un-ordered pairs appear twice
+# D=2: Circular Weakly Balanced Neighbor Designs in which 3v/2 un-ordered pairs appear twice
 #   K: Vector of two different block sizes
 #   i: Number of sets of shifts for K1
 # Sk2: Number of sets of shifts for K2
@@ -550,6 +550,6 @@ design_CWBNDs<-function(H){
 
 # Example#5
 (H<-CWBNDs_2diffsize(k=c(6,4),i=2,D=2,sk2=2))
-(design_CBND(H))
+(design_CwBND(H))
 
 

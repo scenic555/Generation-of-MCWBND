@@ -76,8 +76,8 @@ delmin<-function(z){
 # Weakly balance neighbor design for block of equal size. 
 ################################################################################
 
-# D=1: Circular Strongly Balanced Neighbor Designs
-# D=2: Circular Balanced Neighbor Designs
+# D=1: Circular Weakly Balanced Neighbor Designs in which v/2 un-ordered pairs appear twice
+# D=2: Circular Weakly Balanced Neighbor Designs in which 3v/2 un-ordered pairs appear twice
 #   K: Block sizes
 #   i: Number of set of shifts for K
 
