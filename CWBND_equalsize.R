@@ -73,7 +73,7 @@ delmin<-function(z){
 
 ################################################################################
 # Selection of adjusted A and the set(s) of shifs to obtain Circular  
-# balance neighbor design for block of equal size. 
+# Weakly balance neighbor design for block of equal size. 
 ################################################################################
 
 # D=1: Circular Strongly Balanced Neighbor Designs
@@ -99,7 +99,7 @@ minimal CWBND for", "v=" ,object[[3]][1], "and","k=",object[[3]][2], "\n")}
     
 if(D==2){
       cat("Following are required sets of shifts to obtain the 
-minimal CBND for", "v=" ,object[[3]][1], "and","k=",object[[3]][2], "\n")}
+minimal CWBND for", "v=" ,object[[3]][1], "and","k=",object[[3]][2], "\n")}
 
 row <- paste(rep("=", 51), collapse = "")
     cat(row, "\n")
@@ -331,8 +331,8 @@ design_CWBND<-function(H){
 
 
 ################################################################################
-# Examples: Using CBND_equalsize function to obtain the set(s) of shifts
-# for construction of circular balance neighbor design for equal block  
+# Examples: Using CWBND_equalsize function to obtain the set(s) of shifts
+# for construction of circular Weakly balance neighbor design for equal block  
 # sizes (k)
 ################################################################################
 
