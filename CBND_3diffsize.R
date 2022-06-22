@@ -99,7 +99,7 @@ grouping3<-function(A,k,v,i,sk2,sk3){
       cs<-sum(com)
       if(cs%%v==0){
         bs1<-rbind(bs1,com)
-        A3<-A3[-com]
+        A3<-A3[-comp]
         z<-z+1
         f=f+1
       }
