@@ -1,14 +1,13 @@
 ################################################################################
-# CBND_3diffsize: Circular balance neighbor design for block of three different 
+# CWBND_3diffsize: Circular weakly balance neighbor design for block of three different 
 # sizes (K1,k2 and k3)
 
 # Algorithm from paper:
 
-# Akbar Fardos, Khadija Noreen, Muhammad Sajid Rashid, Mahmood Ul Hassan, 
-# Zahra Noreen and Rashid Ahmed (2021). An Algorithm to Generate Minimal 
-# Circular Balanced and Strongly Balanced Neighbor Designs
+# Khadija Noreen, Muhammad Sajid Rashid, Mahmood Ul Hassan, 
+# Zahra Noreen and Rashid Ahmed (2021). Algorithms to Obtain Minimal Circular Weakly Balanced Neighbor Designs. 
 
-# Coded by Fardos et al., 01-08-2021 to 05-09-2021
+# Coded by Noreen et al., 01-08-2021 to 05-09-2021
 # Version 1.4.0  (2021-09-05)
 ################################################################################
 
@@ -163,20 +162,20 @@ delmin<-function(z){
 
 ################################################################################
 # Selection of adjusted A and the set(s) of shifts to obtain Circular  
-# balance neighbor design for three different block size.
+# Weakly balance neighbor design for three different block size.
 ################################################################################
 
-# D=1: Circular Strongly Balanced Neighbor Designs
-# D=2: Circular Balanced Neighbor Designs
+# D=1: Circular Weakly Balanced Neighbor Designs in which v/2 un-ordered pairs appear twice
+# D=2: Circular Weakly Balanced Neighbor Designs in which 3v/2 un-ordered pairs appear twice
 #   K: Vector of three different block sizes 
 #   i: Number of sets of shifts for K1
 # Sk2: Number of sets of shifts for K2
 # Sk3: Number of sets of shifts for K3
 
 
-CBND_3diffsize<-function(k,i,D,sk2,sk3){
+CWBND_3diffsize<-function(k,i,D,sk2,sk3){
   if(length(k)>3 | length(k)<3){stop("length(k)=3")}
-  if(any(k<=2)!=0) stop("k=Block size: Each block size must be greater than 3")
+  if(any(k<=2)!=0) stop("k=Block size: Each block size must be greater than 2")
   if(i<=0) stop("i=must be a positive integer")
   if(k[1]<k[2] | k[2]<k[3] |  k[1]<k[3]  ) stop("k1>K2>K3")
 
@@ -188,12 +187,12 @@ CBND_3diffsize<-function(k,i,D,sk2,sk3){
 
 if(D==1){
 cat("Following are required sets of shifts to obtain the 
-minimal CSBND for", "v=" ,object$R[1], ",","k1=",object$R[2],
+minimal CWBND for", "v=" ,object$R[1], ",","k1=",object$R[2],
 ",","k2=",object$R[3],"and","k3=",object$R[4],"\n")
     row <- paste(rep("=", 52), collapse = "")}
 if(D==2){
       cat("Following are required sets of shifts to obtain the 
-minimal CBND for", "v=" ,object$R[1], ",","k1=",object$R[2],
+minimal CWBND for", "v=" ,object$R[1], ",","k1=",object$R[2],
           ",","k2=",object$R[3],"and","k3=",object$R[4],"\n")
       row <- paste(rep("=", 52), collapse = "")}
     
@@ -210,7 +209,7 @@ if(D==1 & sk2==1 & sk3==1){
   v=2*i*k[1]+2*k[2]+2*k[3]-1 ; m=(v-1)/2
 if(m%%8==0){
     j=m/8
-    if(j<1) {return("Conditions are not satisfied for CSBND")}
+    if(j<1) {return("Conditions are not satisfied for CWBND")}
     A=c(0:(j-1),(j+1):m,(v-j))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -219,7 +218,7 @@ if(m%%8==0){
   
   if(m%%8==1){
     j=(m-1)/8
-    if(j<1) {return("Conditions are not satisfied for CSBND")}
+    if(j<1) {return("Conditions are not satisfied for CWBND")}
     A=c(0:(3*j),(3*j+2):(m-1),(m+1),(v-(3*j+1)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -228,7 +227,7 @@ if(m%%8==0){
   
   if(m%%8==2){
     j=(m-2)/8
-    if(j<1) {return("Conditions are not satisfied for CSBND")}
+    if(j<1) {return("Conditions are not satisfied for CWBND")}
     A=c(0:(5*j+1),(5*j+3):(m-1),(m+1),(v-(5*j+2)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -237,7 +236,7 @@ if(m%%8==0){
   
   if(m%%8==3){
     j=(m-3)/8
-    if(j<0) {return("Conditions are not satisfied for CSBND")}
+    if(j<0) {return("Conditions are not satisfied for CWBND")}
     A=c(0:(m-j-1),(m-j+1):m,(v-(m-j)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -247,7 +246,7 @@ if(m%%8==0){
   
   if(m%%8==4){
     j=(m-4)/8
-    if(j<0) {return("Conditions are not satisfied for CSBND")}
+    if(j<0) {return("Conditions are not satisfied for CWBND")}
     A=c(0:j,(j+2):(m-1),(m+1),(v-(j+1)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -256,7 +255,7 @@ if(m%%8==0){
   
   if(m%%8==5){
     j=(m-5)/8
-    if(j<0) {return("Conditions are not satisfied for CSBND")}
+    if(j<0) {return("Conditions are not satisfied for CWBND")}
     A=c(0:(3*j+1),(3*j+3):(m),(v-(3*j+2)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -265,7 +264,7 @@ if(m%%8==0){
   
   if(m%%8==6){
     j=(m-6)/8
-    if(j<0) {return("Conditions are not satisfied for CSBND")}
+    if(j<0) {return("Conditions are not satisfied for CWBND")}
     A=c(0:(5*j+3),(5*j+5):(m),(v-(5*j+4)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -274,7 +273,7 @@ if(m%%8==0){
   
   if(m%%8==7){
     j=(m-7)/8
-    if(j<1) {return("Conditions are not satisfied for CSBND")}
+    if(j<1) {return("Conditions are not satisfied for CWBND")}
     A=c(0:(m-j-1),(m-j+1):(m-1),(m+1),(v-(m-j)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -289,7 +288,7 @@ if(D==2 & sk2==1 & sk3==1){
     
     if(m%%8==0){
       j=m/8
-      if(j<1) {return("Conditions are not satisfied for CBNDs")}
+      if(j<1) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(j-1),(j+1):m,(v-j))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -298,7 +297,7 @@ if(D==2 & sk2==1 & sk3==1){
     
     if(m%%8==1){
       j=(m-1)/8
-      if(j<1) {return("Conditions are not satisfied for CBNDs")}
+      if(j<1) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(3*j),(3*j+2):(m-1),(m+1),(v-(3*j+1)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -307,7 +306,7 @@ if(D==2 & sk2==1 & sk3==1){
     
     if(m%%8==2){
       j=(m-2)/8
-      if(j<1) {return("Conditions are not satisfied for CBNDs")}
+      if(j<1) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(5*j+1),(5*j+3):(m-1),(m+1),(v-(5*j+2)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -316,7 +315,7 @@ if(D==2 & sk2==1 & sk3==1){
     
     if(m%%8==3){
       j=(m-3)/8
-      if(j<0) {return("Conditions are not satisfied for CBNDs")}
+      if(j<0) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(m-j-1),(m-j+1):m,(v-(m-j)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -326,7 +325,7 @@ if(D==2 & sk2==1 & sk3==1){
     
     if(m%%8==4){
       j=(m-4)/8
-      if(j<0) {return("Conditions are not satisfied for CBNDs")}
+      if(j<0) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:j,(j+2):(m-1),(m+1),(v-(j+1)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -335,7 +334,7 @@ if(D==2 & sk2==1 & sk3==1){
     
     if(m%%8==5){
       j=(m-5)/8
-      if(j<0) {return("Conditions are not satisfied for CBNDs")}
+      if(j<0) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(3*j+1),(3*j+3):(m),(v-(3*j+2)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -344,7 +343,7 @@ if(D==2 & sk2==1 & sk3==1){
     
     if(m%%8==6){
       j=(m-6)/8
-      if(j<0) {return("Conditions are not satisfied for CBNDs")}
+      if(j<0) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(5*j+3),(5*j+5):(m),(v-(5*j+4)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -353,7 +352,7 @@ if(D==2 & sk2==1 & sk3==1){
     
     if(m%%8==7){
       j=(m-7)/8
-      if(j<1) {return("Conditions are not satisfied for CBNDs")}
+      if(j<1) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(m-j-1),(m-j+1):(m-1),(m+1),(v-(m-j)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -369,7 +368,7 @@ if(D==1 & sk2==2 & sk3==2){
   
   if(m%%8==0){
     j=m/8
-    if(j<1) {return("Conditions are not satisfied for CSBND")}
+    if(j<1) {return("Conditions are not satisfied for CWBND")}
     A=c(0:(j-1),(j+1):m,(v-j))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -378,7 +377,7 @@ if(D==1 & sk2==2 & sk3==2){
   
   if(m%%8==1){
     j=(m-1)/8
-    if(j<1) {return("Conditions are not satisfied for CSBND")}
+    if(j<1) {return("Conditions are not satisfied for CWBND")}
     A=c(0:(3*j),(3*j+2):(m-1),(m+1),(v-(3*j+1)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -387,7 +386,7 @@ if(D==1 & sk2==2 & sk3==2){
   
   if(m%%8==2){
     j=(m-2)/8
-    if(j<1) {return("Conditions are not satisfied for CSBND")}
+    if(j<1) {return("Conditions are not satisfied for CWBND")}
     A=c(0:(5*j+1),(5*j+3):(m-1),(m+1),(v-(5*j+2)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -396,7 +395,7 @@ if(D==1 & sk2==2 & sk3==2){
   
   if(m%%8==3){
     j=(m-3)/8
-    if(j<0) {return("Conditions are not satisfied for CSBND")}
+    if(j<0) {return("Conditions are not satisfied for CWBND")}
     A=c(0:(m-j-1),(m-j+1):m,(v-(m-j)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -406,7 +405,7 @@ if(D==1 & sk2==2 & sk3==2){
   
   if(m%%8==4){
     j=(m-4)/8
-    if(j<0) {return("Conditions are not satisfied for CSBND")}
+    if(j<0) {return("Conditions are not satisfied for CWBND")}
     A=c(0:j,(j+2):(m-1),(m+1),(v-(j+1)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -415,7 +414,7 @@ if(D==1 & sk2==2 & sk3==2){
   
   if(m%%8==5){
     j=(m-5)/8
-    if(j<0) {return("Conditions are not satisfied for CSBND")}
+    if(j<0) {return("Conditions are not satisfied for CWBND")}
     A=c(0:(3*j+1),(3*j+3):(m),(v-(3*j+2)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -424,7 +423,7 @@ if(D==1 & sk2==2 & sk3==2){
   
   if(m%%8==6){
     j=(m-6)/8
-    if(j<0) {return("Conditions are not satisfied for CSBND")}
+    if(j<0) {return("Conditions are not satisfied for CWBND")}
     A=c(0:(5*j+3),(5*j+5):(m),(v-(5*j+4)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -433,7 +432,7 @@ if(D==1 & sk2==2 & sk3==2){
   
   if(m%%8==7){
     j=(m-7)/8
-    if(j<1) {return("Conditions are not satisfied for CSBND")}
+    if(j<1) {return("Conditions are not satisfied for CWBND")}
     A=c(0:(m-j-1),(m-j+1):(m-1),(m+1),(v-(m-j)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -447,7 +446,7 @@ if(D==2 & sk2==2 & sk3==2){
   
   if(m%%8==0){
     j=m/8
-    if(j<1) {return("Conditions are not satisfied for CBNDs")}
+    if(j<1) {return("Conditions are not satisfied for CWBNDs")}
     A=c(1:(j-1),(j+1):m,(v-j))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -456,7 +455,7 @@ if(D==2 & sk2==2 & sk3==2){
   
   if(m%%8==1){
     j=(m-1)/8
-    if(j<1) {return("Conditions are not satisfied for CBNDs")}
+    if(j<1) {return("Conditions are not satisfied for CWBNDs")}
     A=c(1:(3*j),(3*j+2):(m-1),(m+1),(v-(3*j+1)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -465,7 +464,7 @@ if(D==2 & sk2==2 & sk3==2){
   
   if(m%%8==2){
     j=(m-2)/8
-    if(j<1) {return("Conditions are not satisfied for CBNDs")}
+    if(j<1) {return("Conditions are not satisfied for CWBNDs")}
     A=c(1:(5*j+1),(5*j+3):(m-1),(m+1),(v-(5*j+2)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -474,7 +473,7 @@ if(D==2 & sk2==2 & sk3==2){
   
   if(m%%8==3){
     j=(m-3)/8
-    if(j<0) {return("Conditions are not satisfied for CBNDs")}
+    if(j<0) {return("Conditions are not satisfied for CWBNDs")}
     A=c(1:(m-j-1),(m-j+1):m,(v-(m-j)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -484,7 +483,7 @@ if(D==2 & sk2==2 & sk3==2){
   
   if(m%%8==4){
     j=(m-4)/8
-    if(j<0) {return("Conditions are not satisfied for CBNDs")}
+    if(j<0) {return("Conditions are not satisfied for CWBNDs")}
     A=c(1:j,(j+2):(m-1),(m+1),(v-(j+1)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -493,7 +492,7 @@ if(D==2 & sk2==2 & sk3==2){
   
   if(m%%8==5){
     j=(m-5)/8
-    if(j<0) {return("Conditions are not satisfied for CBNDs")}
+    if(j<0) {return("Conditions are not satisfied for CWBNDs")}
     A=c(1:(3*j+1),(3*j+3):(m),(v-(3*j+2)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -502,7 +501,7 @@ if(D==2 & sk2==2 & sk3==2){
   
   if(m%%8==6){
     j=(m-6)/8
-    if(j<0) {return("Conditions are not satisfied for CBNDs")}
+    if(j<0) {return("Conditions are not satisfied for CWBNDs")}
     A=c(1:(5*j+3),(5*j+5):(m),(v-(5*j+4)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -511,7 +510,7 @@ if(D==2 & sk2==2 & sk3==2){
   
   if(m%%8==7){
     j=(m-7)/8
-    if(j<1) {return("Conditions are not satisfied for CBNDs")}
+    if(j<1) {return("Conditions are not satisfied for CWBNDs")}
     A=c(1:(m-j-1),(m-j+1):(m-1),(m+1),(v-(m-j)))
     A1<-grouping3(A,k,v,i,sk2,sk3)
     A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -526,7 +525,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==0){
       j=m/8
-      if(j<1) {return("Conditions are not satisfied for CSBND")}
+      if(j<1) {return("Conditions are not satisfied for CWBND")}
       A=c(0:(j-1),(j+1):m,(v-j))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -535,7 +534,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==1){
       j=(m-1)/8
-      if(j<1) {return("Conditions are not satisfied for CSBND")}
+      if(j<1) {return("Conditions are not satisfied for CWBND")}
       A=c(0:(3*j),(3*j+2):(m-1),(m+1),(v-(3*j+1)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -544,7 +543,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==2){
       j=(m-2)/8
-      if(j<1) {return("Conditions are not satisfied for CSBND")}
+      if(j<1) {return("Conditions are not satisfied for CWBND")}
       A=c(0:(5*j+1),(5*j+3):(m-1),(m+1),(v-(5*j+2)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -553,7 +552,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==3){
       j=(m-3)/8
-      if(j<0) {return("Conditions are not satisfied for CSBND")}
+      if(j<0) {return("Conditions are not satisfied for CWBND")}
       A=c(0:(m-j-1),(m-j+1):m,(v-(m-j)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -563,7 +562,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==4){
       j=(m-4)/8
-      if(j<0) {return("Conditions are not satisfied for CSBND")}
+      if(j<0) {return("Conditions are not satisfied for CWBND")}
       A=c(0:j,(j+2):(m-1),(m+1),(v-(j+1)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -572,7 +571,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==5){
       j=(m-5)/8
-      if(j<0) {return("Conditions are not satisfied for CSBND")}
+      if(j<0) {return("Conditions are not satisfied for CWBND")}
       A=c(0:(3*j+1),(3*j+3):(m),(v-(3*j+2)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -581,7 +580,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==6){
       j=(m-6)/8
-      if(j<0) {return("Conditions are not satisfied for CSBND")}
+      if(j<0) {return("Conditions are not satisfied for CWBND")}
       A=c(0:(5*j+3),(5*j+5):(m),(v-(5*j+4)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -590,7 +589,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==7){
       j=(m-7)/8
-      if(j<1) {return("Conditions are not satisfied for CSBND")}
+      if(j<1) {return("Conditions are not satisfied for CWBND")}
       A=c(0:(m-j-1),(m-j+1):(m-1),(m+1),(v-(m-j)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -605,7 +604,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==0){
       j=m/8
-      if(j<1) {return("Conditions are not satisfied for CBNDs")}
+      if(j<1) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(j-1),(j+1):m,(v-j))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -614,7 +613,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==1){
       j=(m-1)/8
-      if(j<1) {return("Conditions are not satisfied for CBNDs")}
+      if(j<1) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(3*j),(3*j+2):(m-1),(m+1),(v-(3*j+1)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -623,7 +622,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==2){
       j=(m-2)/8
-      if(j<1) {return("Conditions are not satisfied for CBNDs")}
+      if(j<1) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(5*j+1),(5*j+3):(m-1),(m+1),(v-(5*j+2)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -632,7 +631,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==3){
       j=(m-3)/8
-      if(j<0) {return("Conditions are not satisfied for CBNDs")}
+      if(j<0) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(m-j-1),(m-j+1):m,(v-(m-j)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -642,7 +641,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==4){
       j=(m-4)/8
-      if(j<0) {return("Conditions are not satisfied for CBNDs")}
+      if(j<0) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:j,(j+2):(m-1),(m+1),(v-(j+1)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -651,7 +650,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==5){
       j=(m-5)/8
-      if(j<0) {return("Conditions are not satisfied for CBNDs")}
+      if(j<0) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(3*j+1),(3*j+3):(m),(v-(3*j+2)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -660,7 +659,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==6){
       j=(m-6)/8
-      if(j<0) {return("Conditions are not satisfied for CBNDs")}
+      if(j<0) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(5*j+3),(5*j+5):(m),(v-(5*j+4)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -669,7 +668,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==7){
       j=(m-7)/8
-      if(j<1) {return("Conditions are not satisfied for CBNDs")}
+      if(j<1) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(m-j-1),(m-j+1):(m-1),(m+1),(v-(m-j)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -681,7 +680,7 @@ if(D==2 & sk2==2 & sk3==2){
     v=2*i*k[1]+4*k[2]+2*k[3]-1; m=(v-1)/2
     if(m%%8==0){
       j=m/8
-      if(j<1) {return("Conditions are not satisfied for CSBND")}
+      if(j<1) {return("Conditions are not satisfied for CWBND")}
       A=c(0:(j-1),(j+1):m,(v-j))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -690,7 +689,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==1){
       j=(m-1)/8
-      if(j<1) {return("Conditions are not satisfied for CSBND")}
+      if(j<1) {return("Conditions are not satisfied for CWBND")}
       A=c(0:(3*j),(3*j+2):(m-1),(m+1),(v-(3*j+1)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -699,7 +698,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==2){
       j=(m-2)/8
-      if(j<1) {return("Conditions are not satisfied for CSBND")}
+      if(j<1) {return("Conditions are not satisfied for CWBND")}
       A=c(0:(5*j+1),(5*j+3):(m-1),(m+1),(v-(5*j+2)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -708,7 +707,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==3){
       j=(m-3)/8
-      if(j<0) {return("Conditions are not satisfied for CSBND")}
+      if(j<0) {return("Conditions are not satisfied for CWBND")}
       A=c(0:(m-j-1),(m-j+1):m,(v-(m-j)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -718,7 +717,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==4){
       j=(m-4)/8
-      if(j<0) {return("Conditions are not satisfied for CSBND")}
+      if(j<0) {return("Conditions are not satisfied for CWBND")}
       A=c(0:j,(j+2):(m-1),(m+1),(v-(j+1)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -727,7 +726,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==5){
       j=(m-5)/8
-      if(j<0) {return("Conditions are not satisfied for CSBND")}
+      if(j<0) {return("Conditions are not satisfied for CWBND")}
       A=c(0:(3*j+1),(3*j+3):(m),(v-(3*j+2)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -736,7 +735,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==6){
       j=(m-6)/8
-      if(j<0) {return("Conditions are not satisfied for CSBND")}
+      if(j<0) {return("Conditions are not satisfied for CWBND")}
       A=c(0:(5*j+3),(5*j+5):(m),(v-(5*j+4)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -745,7 +744,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==7){
       j=(m-7)/8
-      if(j<1) {return("Conditions are not satisfied for CSBND")}
+      if(j<1) {return("Conditions are not satisfied for CWBND")}
       A=c(0:(m-j-1),(m-j+1):(m-1),(m+1),(v-(m-j)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -760,7 +759,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==0){
       j=m/8
-      if(j<1) {return("Conditions are not satisfied for CBNDs")}
+      if(j<1) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(j-1),(j+1):m,(v-j))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -769,7 +768,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==1){
       j=(m-1)/8
-      if(j<1) {return("Conditions are not satisfied for CBNDs")}
+      if(j<1) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(3*j),(3*j+2):(m-1),(m+1),(v-(3*j+1)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -778,7 +777,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==2){
       j=(m-2)/8
-      if(j<1) {return("Conditions are not satisfied for CBNDs")}
+      if(j<1) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(5*j+1),(5*j+3):(m-1),(m+1),(v-(5*j+2)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -787,7 +786,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==3){
       j=(m-3)/8
-      if(j<0) {return("Conditions are not satisfied for CBNDs")}
+      if(j<0) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(m-j-1),(m-j+1):m,(v-(m-j)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -797,7 +796,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==4){
       j=(m-4)/8
-      if(j<0) {return("Conditions are not satisfied for CBNDs")}
+      if(j<0) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:j,(j+2):(m-1),(m+1),(v-(j+1)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -806,7 +805,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==5){
       j=(m-5)/8
-      if(j<0) {return("Conditions are not satisfied for CBNDs")}
+      if(j<0) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(3*j+1),(3*j+3):(m),(v-(3*j+2)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -815,7 +814,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==6){
       j=(m-6)/8
-      if(j<0) {return("Conditions are not satisfied for CBNDs")}
+      if(j<0) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(5*j+3),(5*j+5):(m),(v-(5*j+4)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -824,7 +823,7 @@ if(D==2 & sk2==2 & sk3==2){
     
     if(m%%8==7){
       j=(m-7)/8
-      if(j<1) {return("Conditions are not satisfied for CBNDs")}
+      if(j<1) {return("Conditions are not satisfied for CWBNDs")}
       A=c(1:(m-j-1),(m-j+1):(m-1),(m+1),(v-(m-j)))
       A1<-grouping3(A,k,v,i,sk2,sk3)
       A2<-c(v,k);names(A2)<-c("V","K1","K2","K3")
@@ -839,9 +838,9 @@ new("stat_test", x)
 ###################################################################
 # Generation of design using sets of cyclical shifts
 ###################################################################
-# H is an output object from CBND_3diffsize
-# The output is called using the design_CBND to generate design
-design_CBND<-function(H){
+# H is an output object from CWBND_3diffsize
+# The output is called using the design_CWBND to generate design
+design_CWBND<-function(H){
   
   setClass( "CWBND_design", representation("list"))
   setMethod("show", "CWBND_design", function(object) {
@@ -904,39 +903,25 @@ design_CBND<-function(H){
 
 
 # Example#1
-(H<-CBND_3diffsize(k=c(12,7,4),i=5,D=1,sk2=1,sk3=1))
-(design_CBND(H))
+(H<-CWBND_3diffsize(k=c(12,7,4),i=5,D=1,sk2=1,sk3=1))
+(design_CWBND(H))
 
 #Example#2
-(H<-CBND_3diffsize(k=c(8,5,4),i=6,D=2,sk2=1,sk3=1))
-(design_CBND(H))
+(H<-CWBND_3diffsize(k=c(8,5,4),i=6,D=2,sk2=1,sk3=1))
+(design_CWBND(H))
 
 #Example#3
-(H<-CBND_3diffsize(k=c(11,8,4),i=5,D=1,sk2=2,sk3=2))
-(design_CBND(H))
+(H<-CWBND_3diffsize(k=c(11,8,4),i=5,D=1,sk2=2,sk3=2))
+(design_CWBND(H))
 
 #Example#4
-(H<-CBND_3diffsize(k=c(9,7,6),i=3,D=2,sk2=2,sk3=2))
-(design_CBND(H))
+(H<-CWBND_3diffsize(k=c(9,7,6),i=3,D=2,sk2=2,sk3=2))
+(design_CWBND(H))
 
 #Example#5
-(H<-CBND_3diffsize(k=c(8,6,4),i=5,D=2,sk2=1,sk3=2))
-(design_CBND(H))
+(H<-CWBND_3diffsize(k=c(8,6,4),i=5,D=2,sk2=1,sk3=2))
+(design_CWBND(H))
 
 #Example#6
-(H<-CBND_3diffsize(k=c(14,7,4),i=6,D=2,sk2=2,sk3=1))
-(design_CBND(H))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+(H<-CWBND_3diffsize(k=c(14,7,4),i=6,D=2,sk2=2,sk3=1))
+(design_CWBND(H))
